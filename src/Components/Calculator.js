@@ -14,8 +14,29 @@ export default function Calculator(){
         setResult(arr)
     }
 
-    const sum = (a,b) =>{
-        return a + b;
+    const sum = (str) =>{
+        str = String(str)
+        let symbols = str.indexOf('+');
+        let prima = str.slice(0,symbols);
+        let secondo = str.slice(symbols +1);
+        const NewPrima = convertStringToNumber(prima)
+        const NewSeconda = convertStringToNumber(secondo);
+        let somma = NewPrima + NewSeconda
+        somma = String(somma);
+        setResult(somma)
+    }
+
+
+    const sottr = (str) =>{
+        str = String(str)
+        let symbols = str.indexOf('-');
+        let prima = str.slice(0,symbols);
+        let secondo = str.slice(symbols +1);
+        const NewPrima = convertStringToNumber(prima)
+        const NewSeconda = convertStringToNumber(secondo);
+        let sottrazione = NewPrima - NewSeconda
+        sottrazione = String(sottrazione);
+        setResult(sottrazione)
     }
 
     useEffect(()=>{
@@ -30,22 +51,44 @@ export default function Calculator(){
         setResult(tmp);
     }
 
+    const insertMinus = (e) =>{
+        let tmp = String(result);
+        tmp = tmp.concat('-');
+        setResult(tmp);
+    }
 
     const convertStringToNumber = (str) =>{
        
         return Number(str);
     }
 
+
+    const checkSymbols = (str) =>{
+        let sy;
+        for (let i =0; i<str.length; i++){
+            if(str[i] === '+' || str[i] === '-' || str[i] === '/' || str[i] === '*'){
+                sy = str[i];
+            }
+        }
+        return sy;
+    }
     const checkOperation = ()=>{
-        
-        let symbols = result.indexOf('+');
-        let prima = result.slice(0,symbols);
-        let secondo = result.slice(symbols +1);
-        const NewPrima = convertStringToNumber(prima)
-        const NewSeconda = convertStringToNumber(secondo);
-        let somma = sum(NewPrima, NewSeconda);
-        somma = String(somma);
-        setResult(somma)
+
+        const sy = checkSymbols(result);
+        switch(sy){
+            case '+': 
+
+            sum(result);
+            break;
+
+
+            case '-': 
+
+            sottr(result)
+            break;
+            
+        }
+       
         
     }
 
@@ -107,7 +150,7 @@ export default function Calculator(){
                 </Button>
             </Grid>
             <Grid item md={3}>
-                <Button variant="contained" sx={{width:"100%"}}>
+                <Button variant="contained" sx={{width:"100%"}} onClick={insertMinus}>
                     -
                 </Button>
             </Grid>
