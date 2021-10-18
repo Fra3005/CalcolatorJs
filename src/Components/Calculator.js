@@ -129,12 +129,12 @@ export default function Calculator() {
   return (
     <Grid container spacing={2}>
       <Grid item md={12} sx={{ position: "" }}>
-        {result === "" ? 0 : result}
+        <h3 style={{ textAlign: "center" }}>{result === "" ? 0 : result}</h3>
       </Grid>
       <Grid item md={6}>
         <Button
           variant="contained"
-          sx={{ width: "100%" }}
+          sx={{ width: "100%", backgroundColor: "red" }}
           onClick={() => {
             setResult("");
           }}
@@ -143,14 +143,17 @@ export default function Calculator() {
         </Button>
       </Grid>
       <Grid item md={3}>
-        <Button variant="contained" sx={{ width: "100%" }}>
+        <Button
+          variant="contained"
+          sx={{ width: "100%", backgroundColor: "green" }}
+        >
           %
         </Button>
       </Grid>
       <Grid item md={3}>
         <Button
           variant="contained"
-          sx={{ width: "100%" }}
+          sx={{ width: "100%", backgroundColor: "green" }}
           onClick={insertDivis}
         >
           /
@@ -190,7 +193,7 @@ export default function Calculator() {
       <Grid item md={3}>
         <Button
           variant="contained"
-          sx={{ width: "100%" }}
+          sx={{ width: "100%", backgroundColor: "green" }}
           onClick={insertMolti}
         >
           X
@@ -229,7 +232,7 @@ export default function Calculator() {
       <Grid item md={3}>
         <Button
           variant="contained"
-          sx={{ width: "100%" }}
+          sx={{ width: "100%", backgroundColor: "green" }}
           onClick={insertMinus}
         >
           -
@@ -266,7 +269,11 @@ export default function Calculator() {
         </Button>
       </Grid>
       <Grid item md={3}>
-        <Button variant="contained" sx={{ width: "100%" }} onClick={insertPlus}>
+        <Button
+          variant="contained"
+          sx={{ width: "100%", backgroundColor: "green" }}
+          onClick={insertPlus}
+        >
           +
         </Button>
       </Grid>
@@ -288,7 +295,7 @@ export default function Calculator() {
       <Grid item md={3}>
         <Button
           variant="contained"
-          sx={{ width: "100%" }}
+          sx={{ width: "100%", backgroundColor: "red" }}
           onClick={checkOperation}
         >
           =
