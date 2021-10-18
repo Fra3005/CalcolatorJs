@@ -35,6 +35,30 @@ export default function Calculator() {
     setResult(sottrazione);
   };
 
+  const molti = (str) => {
+    str = String(str);
+    let symbols = str.indexOf("*");
+    let prima = str.slice(0, symbols);
+    let secondo = str.slice(symbols + 1);
+    const NewPrima = convertStringToNumber(prima);
+    const NewSeconda = convertStringToNumber(secondo);
+    let moltiplicazione = NewPrima * NewSeconda;
+    moltiplicazione = String(moltiplicazione);
+    setResult(moltiplicazione);
+  };
+
+  const divis = (str) => {
+    str = String(str);
+    let symbols = str.indexOf("/");
+    let prima = str.slice(0, symbols);
+    let secondo = str.slice(symbols + 1);
+    const NewPrima = convertStringToNumber(prima);
+    const NewSeconda = convertStringToNumber(secondo);
+    let divisione = NewPrima / NewSeconda;
+    divisione = String(divisione);
+    setResult(divisione);
+  };
+
   useEffect(() => {
     console.log(result);
   }, [result]);
@@ -48,6 +72,18 @@ export default function Calculator() {
   const insertMinus = (e) => {
     let tmp = String(result);
     tmp = tmp.concat("-");
+    setResult(tmp);
+  };
+
+  const insertMolti = (e) => {
+    let tmp = String(result);
+    tmp = tmp.concat("*");
+    setResult(tmp);
+  };
+
+  const insertDivis = (e) => {
+    let tmp = String(result);
+    tmp = tmp.concat("/");
     setResult(tmp);
   };
 
@@ -79,6 +115,14 @@ export default function Calculator() {
       case "-":
         sottr(result);
         break;
+
+      case "*":
+        molti(result);
+        break;
+
+      case "/":
+        divis(result);
+        break;
     }
   };
 
@@ -104,7 +148,11 @@ export default function Calculator() {
         </Button>
       </Grid>
       <Grid item md={3}>
-        <Button variant="contained" sx={{ width: "100%" }}>
+        <Button
+          variant="contained"
+          sx={{ width: "100%" }}
+          onClick={insertDivis}
+        >
           /
         </Button>
       </Grid>
@@ -140,7 +188,11 @@ export default function Calculator() {
         </Button>
       </Grid>
       <Grid item md={3}>
-        <Button variant="contained" sx={{ width: "100%" }}>
+        <Button
+          variant="contained"
+          sx={{ width: "100%" }}
+          onClick={insertMolti}
+        >
           X
         </Button>
       </Grid>
