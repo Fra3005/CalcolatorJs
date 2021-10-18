@@ -4,6 +4,7 @@ import { Grid, Button, Box } from "@mui/material";
 export default function Calculator() {
   const [result, setResult] = useState("");
 
+  //aggiunta input con concatenazione stringhe
   const handleChangeInput = (e) => {
     let arr = String(result);
     arr = arr.concat(e.target.value);
@@ -11,6 +12,7 @@ export default function Calculator() {
     setResult(arr);
   };
 
+  //calcolo della somma checkando l'operatore, dividendo la stringa di partenza in 2 parti, convertendo e poi facendo la somma
   const sum = (str) => {
     str = String(str);
     let symbols = str.indexOf("+");
@@ -23,6 +25,7 @@ export default function Calculator() {
     setResult(somma);
   };
 
+  //calcolo della sottr checkando l'operatore, dividendo la stringa di partenza in 2 parti, convertendo e poi facendo la sottr
   const sottr = (str) => {
     str = String(str);
     let symbols = str.indexOf("-");
@@ -35,6 +38,7 @@ export default function Calculator() {
     setResult(sottrazione);
   };
 
+  //calcolo della molti checkando l'operatore, dividendo la stringa di partenza in 2 parti, convertendo e poi facendo la molti
   const molti = (str) => {
     str = String(str);
     let symbols = str.indexOf("*");
@@ -47,6 +51,7 @@ export default function Calculator() {
     setResult(moltiplicazione);
   };
 
+  //calcolo della divi checkando l'operatore, dividendo la stringa di partenza in 2 parti, convertendo e poi facendo la divi
   const divis = (str) => {
     str = String(str);
     let symbols = str.indexOf("/");
@@ -58,10 +63,6 @@ export default function Calculator() {
     divisione = String(divisione);
     setResult(divisione);
   };
-
-  useEffect(() => {
-    console.log(result);
-  }, [result]);
 
   const insertPlus = (e) => {
     let tmp = String(result);
@@ -91,6 +92,7 @@ export default function Calculator() {
     return Number(str);
   };
 
+  //check del simbolo per fare l'operazione
   const checkSymbols = (str) => {
     let sy;
     for (let i = 0; i < str.length; i++) {
@@ -105,6 +107,8 @@ export default function Calculator() {
     }
     return sy;
   };
+
+  //switch case richiamando le operazioni in base al segno
   const checkOperation = () => {
     const sy = checkSymbols(result);
     switch (sy) {
